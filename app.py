@@ -7,6 +7,15 @@ import streamlit as st
 # Paths are relative to this app.py file, so they work locally and on Streamlit Cloud.
 BASE_DIR = Path(__file__).resolve().parent
 DATA_PATH = BASE_DIR / "data" / "emi_prediction_dataset.csv"
+if DATA_PATH.exists():
+    df_explore = pd.read_csv(DATA_PATH, low_memory=False)
+
+    # Keep your existing Data Exploration code here
+else:
+    st.info(
+        "The full dataset is available in the local project. "
+        "Dataset exploration is disabled in this cloud deployment."
+    )
 CLASSIFICATION_MODEL_PATH = BASE_DIR / "models" / "classification_model"
 REGRESSION_MODEL_PATH = BASE_DIR / "models" / "regression_model"
 
