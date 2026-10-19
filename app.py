@@ -1326,7 +1326,18 @@ elif page == "📊 Data Exploration":
         return data
 
 
-    df_explore = load_data()
+    
+    BASE_DIR = Path(__file__).resolve().parent
+    DATA_PATH = BASE_DIR / "data" / "emi_prediction_dataset.csv"
+    
+    if DATA_PATH.exists():
+        df_explore = pd.read_csv(DATA_PATH, low_memory=False)
+
+    # Keep the existing Data Exploration code here,
+    # including the charts and analysis.
+    else:
+        st.info("The full dataset is available in the local project. "
+                "Dataset exploration is disabled in this cloud deployment.")
 
     # =====================================================
     # DATASET SUMMARY
